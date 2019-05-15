@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GameConfiguration {
+public class ApplicationConfiguration {
     @Bean
     public PredictionService predictionService() {
         return new PredictionService();
