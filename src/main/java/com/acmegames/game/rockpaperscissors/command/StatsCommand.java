@@ -16,10 +16,11 @@ public class StatsCommand {
     @ShellMethod("Get statistics about played games")
     public String stats() {
         var buffer = new StringBuffer();
-        var wins = statisticsService.getWins();
-        var loses = statisticsService.getLoses();
-        var ties = statisticsService.getTies();
-        var games = statisticsService.getGames();
+        var stats = statisticsService.getStatistics();
+        var wins = stats.getWins();
+        var loses = stats.getLoses();
+        var ties = stats.getTies();
+        var games = stats.getGames();
 
         if (games > 0) {
             buffer.append(String.format("Games played: %d%n", games));

@@ -2,10 +2,8 @@ package com.acmegames.game.rockpaperscissors.service;
 
 import com.acmegames.game.rockpaperscissors.model.Outcome;
 import com.acmegames.game.rockpaperscissors.model.Statistics;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 
-@Getter
 @Component
 public class StatisticsService {
     private int games;
