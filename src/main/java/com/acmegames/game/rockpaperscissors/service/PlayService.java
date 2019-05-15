@@ -5,11 +5,16 @@ import com.acmegames.game.rockpaperscissors.model.Outcome;
 import com.acmegames.game.rockpaperscissors.model.Play;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class PlayService {
     private final ItemSelectionService itemSelectionService;
     private final PredictionService predictionService;
     private final StatisticsService statisticsService;
+    private final List<Play> plays = new ArrayList<>();
 
     public PlayService(final ItemSelectionService itemSelectionService,
                        final PredictionService predictionService,
@@ -19,13 +24,27 @@ public class PlayService {
         this.statisticsService = statisticsService;
     }
 
+    public List<Play> getPlays() {
+        return List.copyOf(plays);
+    }
+
+    public Optional<Play> getPlay(final int id) {
+        if (id < 0 || id >= plays.size()) {
+            return Optional.empty();
+        }
+        return Optional.of(plays.get(id));
+    }
+
     public Play play(final Item userSelectedItem) {
         var computerSelectedItem = itemSelectionService.selectItem();
         var outcome = computeOutcome(userSelectedItem, computerSelectedItem);
 
         statisticsService.recordMove(outcome);
         predictionService.recordMove(userSelectedItem);
-        return new Play(userSelectedItem, computerSelectedItem, outcome);
+
+        var play = new Play(plays.size(), userSelectedItem, computerSelectedItem, outcome);
+        plays.add(play);
+        return play;
     }
 
     private Outcome computeOutcome(final Item userSelectedItem, final Item computerSelectedItem) {

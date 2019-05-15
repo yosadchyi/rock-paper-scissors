@@ -1,6 +1,7 @@
 package com.acmegames.game.rockpaperscissors.service;
 
 import com.acmegames.game.rockpaperscissors.model.Outcome;
+import com.acmegames.game.rockpaperscissors.model.Statistics;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,10 @@ public class StatisticsService {
                 ties++;
                 break;
         }
+    }
+
+    public Statistics getStatistics() {
+        return new Statistics(games, loses, wins, ties);
     }
 }
 
