@@ -1,0 +1,64 @@
+= Rock Paper Scissors API Documentation
+
+:toc:
+
+== Types
+
+=== `Item` type
+
+`Item` type identifies item selected by player (user or AI). Can be one of the following values:
+
+* `ROCK`
+* `PAPER`
+* `SCISSORS`
+
+=== `Outcome` type
+
+`Outcome` type identifies outcome of the game, can be one of the following values:
+
+* `WIN` - user wins
+* `LOSE` - user loses
+* `TIE` - tie
+
+== `play` resource
+
+=== Creating new play
+
+.Request example
+include::{snippets}/play-post/http-request.adoc[]
+
+.Response example
+include::{snippets}/play-post/http-response.adoc[]
+
+.Request fields
+include::{snippets}/play-post/request-fields.adoc[]
+
+.Response fields
+include::{snippets}/play-post/response-fields.adoc[]
+
+=== Getting play by `id`
+
+.Request example
+include::{snippets}/play-get-by-id/http-request.adoc[]
+
+.Response example
+include::{snippets}/play-get-by-id/http-response.adoc[]
+
+=== Listing all plays
+
+.Request example
+include::{snippets}/play-get/http-request.adoc[]
+
+.Response example
+include::{snippets}/play-get/http-response.adoc[]
+
+== `stats` resource
+
+.Request example
+include::{snippets}/stats/http-request.adoc[]
+
+.Response example
+include::{snippets}/stats/http-response.adoc[]
+
+.Response fields
+include::{snippets}/stats/response-fields.adoc[]
