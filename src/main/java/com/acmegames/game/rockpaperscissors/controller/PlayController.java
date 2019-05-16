@@ -1,6 +1,5 @@
 package com.acmegames.game.rockpaperscissors.controller;
 
-import com.acmegames.game.rockpaperscissors.model.Item;
 import com.acmegames.game.rockpaperscissors.model.Play;
 import com.acmegames.game.rockpaperscissors.model.PlayInput;
 import com.acmegames.game.rockpaperscissors.service.PlayService;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
