@@ -2,9 +2,11 @@ package com.acmegames.game.rockpaperscissors.service;
 
 import com.acmegames.game.rockpaperscissors.model.Outcome;
 import com.acmegames.game.rockpaperscissors.model.Statistics;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.Objects;
+
+@Service
 public class StatisticsService {
     private int games;
     private int loses;
@@ -12,6 +14,8 @@ public class StatisticsService {
     private int ties;
 
     public void recordMove(Outcome outcome) {
+        Objects.requireNonNull(outcome);
+
         games++;
         switch (outcome) {
             case WIN:

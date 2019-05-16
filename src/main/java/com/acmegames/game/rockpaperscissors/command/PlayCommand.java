@@ -2,11 +2,13 @@ package com.acmegames.game.rockpaperscissors.command;
 
 import com.acmegames.game.rockpaperscissors.model.Item;
 import com.acmegames.game.rockpaperscissors.model.Outcome;
+import com.acmegames.game.rockpaperscissors.model.PlayInput;
 import com.acmegames.game.rockpaperscissors.service.PlayService;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
 import java.util.Map;
+import java.util.Objects;
 
 @ShellComponent
 public class PlayCommand {
@@ -24,7 +26,9 @@ public class PlayCommand {
 
     @ShellMethod("Play with computer, requires item as input {ROCK|PAPER|SCISSORS}")
     public String play(final Item userSelectedItem) {
-        var play = playService.play(userSelectedItem);
+        Objects.requireNonNull(userSelectedItem);
+
+        var play = playService.play(new PlayInput(userSelectedItem));
         var buffer = new StringBuffer();
 
         buffer.append(String.format("You selected %s%n", play.getUserSelectedItem()));

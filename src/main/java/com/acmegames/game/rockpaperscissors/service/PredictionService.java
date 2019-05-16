@@ -3,6 +3,8 @@ package com.acmegames.game.rockpaperscissors.service;
 import com.acmegames.game.rockpaperscissors.model.Item;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class PredictionService {
     private int moves;
@@ -10,6 +12,8 @@ public class PredictionService {
     private final int[][] markovChain = new int[Item.size()][Item.size()];
 
     public void recordMove(final Item item) {
+        Objects.requireNonNull(item);
+
         if (moves > 0) {
             markovChain[lastItem.ordinal()][item.ordinal()]++;
         }

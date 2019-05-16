@@ -11,6 +11,8 @@ import com.acmegames.game.rockpaperscissors.service.StatisticsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Random;
+
 @Configuration
 public class ApplicationConfiguration {
     @Bean
@@ -25,7 +27,7 @@ public class ApplicationConfiguration {
 
     @Bean
     public ItemSelectionService itemSelectionService() {
-        return new ItemSelectionService(predictionService());
+        return new ItemSelectionService(predictionService(), new Random());
     }
 
     @Bean

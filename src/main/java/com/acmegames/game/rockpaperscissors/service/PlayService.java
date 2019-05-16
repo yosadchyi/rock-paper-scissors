@@ -3,10 +3,12 @@ package com.acmegames.game.rockpaperscissors.service;
 import com.acmegames.game.rockpaperscissors.model.Item;
 import com.acmegames.game.rockpaperscissors.model.Outcome;
 import com.acmegames.game.rockpaperscissors.model.Play;
+import com.acmegames.game.rockpaperscissors.model.PlayInput;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,7 +37,11 @@ public class PlayService {
         return Optional.of(plays.get(id));
     }
 
-    public Play play(final Item userSelectedItem) {
+    public Play play(final PlayInput input) {
+        Objects.requireNonNull(input);
+        Objects.requireNonNull(input.selectedItem);
+
+        var userSelectedItem = input.selectedItem;
         var computerSelectedItem = itemSelectionService.selectItem();
         var outcome = computeOutcome(userSelectedItem, computerSelectedItem);
 

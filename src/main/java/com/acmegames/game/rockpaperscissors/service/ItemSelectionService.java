@@ -12,20 +12,21 @@ import java.util.stream.Stream;
 
 @Service
 public class ItemSelectionService {
-    private final PredictionService predictionService;
-    private final Random rng = new Random();
-    private final Map<Item, List<Item>> itemToLoses;
+    private static final Map<Item, List<Item>> ITEM_TO_LOSES = Stream.of(Item.values())
+            .collect(Collectors.toMap(Function.identity(), i -> List.copyOf(i.losesTo())));
 
-    public ItemSelectionService(final PredictionService predictionService) {
+    private final PredictionService predictionService;
+    private final Random rng;
+
+    public ItemSelectionService(final PredictionService predictionService, final Random rng) {
         this.predictionService = predictionService;
-        this.itemToLoses = Stream.of(Item.values())
-                .collect(Collectors.toMap(Function.identity(), i -> List.copyOf(i.losesTo())));
+        this.rng = rng;
     }
 
     public Item selectItem() {
         if (predictionService.canPredictMove()) {
             var predictedItem = predictionService.predictNextMove();
-            var losesTo = itemToLoses.get(predictedItem);
+            var losesTo = ITEM_TO_LOSES.get(predictedItem);
 
             return losesTo.get(rng.nextInt(losesTo.size()));
         }
