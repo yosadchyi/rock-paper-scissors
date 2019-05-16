@@ -27,6 +27,8 @@ $ java -jar rockpaperscissors-0.0.1-SNAPSHOT.jar
 
 ## Command line interface
 
+Application uses `spring-shell` to provide command line interface. Please find available commands below.
+
 ```
 AVAILABLE COMMANDS
 
